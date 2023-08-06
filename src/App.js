@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
-function App() {
+const TrafficLights = () => {
+  const [currentColor, setCurrentColor] = useState('red');
+
+  const handleButtonClick = () => {
+    if (currentColor === 'red') {
+      setCurrentColor('yellow');
+    } else if (currentColor === 'yellow') {
+      setCurrentColor('green');
+    } else if (currentColor === 'green') {
+      setCurrentColor('red');
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="traffic-lights">
+      <div className={`light red ${currentColor === 'red' ? 'active' : ''}`}></div>
+      <div className={`light yellow ${currentColor === 'yellow' ? 'active' : ''}`}></div>
+      <div className={`light green ${currentColor === 'green' ? 'active' : ''}`}></div>
+      <button onClick={handleButtonClick}>Змінити колір</button>
     </div>
   );
-}
+};
 
-export default App;
+export default TrafficLights;
